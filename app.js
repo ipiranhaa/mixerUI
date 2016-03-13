@@ -5,9 +5,9 @@ var path = require('path');
 // board
 var five = require("johnny-five");
 var EtherPort = require("etherport");
-var board = new five.Board({ 
-  port: new EtherPort(3030) 
-});
+//var board = new five.Board({ 
+//  port: new EtherPort(3030) 
+//});
 var led;
 
 var server = app.listen(5555, function() {
@@ -29,19 +29,19 @@ io.on('connection', function(socket) {
 	console.log('a user connected');
 	socket.on('eqData', function(data) {
 		console.log(data);
-		led.blink(100);
-		setTimeout(function() { 
-			led.off();
-		}, 2000);
+		//led.blink(100);
+		//setTimeout(function() { 
+		//	led.off();
+		//}, 2000);
 		
 	});
 
-	board.on("ready", function() {
-	  console.log("Ready!");
-	  led = new five.Led(8);
-	  led.on();
-	  this.on("exit", function() {
-    	led.off();
-  	});
-	});
+	//board.on("ready", function() {
+	//  console.log("Ready!");
+	//  led = new five.Led(8);
+	//  led.on();
+	//  this.on("exit", function() {
+    //	led.off();
+  	//});
+	//});
 });

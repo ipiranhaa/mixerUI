@@ -2,14 +2,24 @@ body {
 	background-color: black;
 }
 
-h2 {
+.title {
 	color: #fff;
+	text-align: center;
+	margin-top: 50px;
 }
 
 .slider-vertical{
 	margin-right: 8px;
 }
 
+.container-line1 {
+	margin-top: 50px;
+}
+
 .container-line2 {
 	margin-top: 35px;
+}
+
+.knob-container {
+	margin-top: 55px;
 }
