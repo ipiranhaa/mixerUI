@@ -9,7 +9,9 @@
   "author": "MF",
   "license": "ISC",
   "dependencies": {
+    "etherport": "^0.1.3",
     "express": "^4.13.3",
+    "johnny-five": "^0.9.30",
     "socket.io": "^1.3.7"
   }
 }
