@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
-	<title>Sound Studio System</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="js/slider/css/slider.css">
-	<link rel="stylesheet" href="css/css.css">
+	<title>Wireless Equalizer System</title>
+	<link rel="stylesheet" href="asset/css/bstrap.css">
+	<link rel="stylesheet" href="asset/js/slider/css/slider.css">
+	<link rel="stylesheet" href="asset/css/css.css">
 	
-	<script src="js/jQuery v_2_1_4.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="js/slider/js/bootstrap-slider.js"></script>
-	<script src="js/jquery.knob.js"></script>
-	<script src="js/script.js"></script>
+	<script src="asset/js/jquery.js"></script>
+	<script src="asset/js/slider/js/slider.js"></script>
+	<script src="asset/js/knob.js"></script>
+	<script src="asset/js/script.js"></script>
 </head>
 <body>
 	<div class="col-md-12 col-lg-12">
-		<h2 class="title">Wireless Equalizer System</h2>
-		<div class="row container-line1">
-			<div class="eq-container col-md-10 col-md-offset-1 col-lg-7 col-lg-offset-1">
+		<div class="row container-line1" id="container-line1">
+			<div class="eq-container col-md-10 col-lg-10">
+				<span class="eq-label">
+					<table>
+						<tr>
+							<td valign="top">+10</td>
+						</tr>
+						<tr>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td valign="bottom">-10</td>
+						</tr>
+					</table>
+				</span>
+
 				<input id="eq0" class="eq-top" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
 				<input id="eq1" class="eq-top" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
 				<input id="eq2" class="eq-top" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
@@ -49,15 +60,42 @@
 				<input id="eq27" class="eq-top" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
 				<input id="eq28" class="eq-top" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
 				<input id="eq29" class="eq-top" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
+				<span class="eq-label">
+					<table>
+						<tr>
+							<td valign="top">+10</td>
+						</tr>
+						<tr>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td valign="bottom">-10</td>
+						</tr>
+					</table>
+				</span>
 			</div>
 			
-			<div class="knob-container col-md-1 col-lg-2">
+			<div class="knob-container col-md-2 col-lg-2">
 				<input type="text" id="knob1" class="knob knob-top" value="0" data-skin="tron">
 				<input type="text" id="knob2" class="knob knob-top" value="0" data-skin="tron">
 			</div>
 		</div>
-		<div class="row container-line2">
-			<div class="eq-container col-md-10 col-md-offset-1 col-lg-7 col-lg-offset-1">
+		<div class="row container-line2" id="container-line2">
+			<div class="eq-container col-md-10 col-lg-10">
+				<span class="eq-label">
+					<table>
+						<tr>
+							<td valign="top">+10</td>
+						</tr>
+						<tr>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td valign="bottom">-10</td>
+						</tr>
+					</table>
+				</span>
+
 				<input id="eq30" class="eq-bottom" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
 				<input id="eq31" class="eq-bottom" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
 				<input id="eq32" class="eq-bottom" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
@@ -88,9 +126,23 @@
 				<input id="eq57" class="eq-bottom" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
 				<input id="eq58" class="eq-bottom" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
 				<input id="eq59" class="eq-bottom" type="text" data-slider-min="-10" data-slider-max="10" data-slider-step="1" data-slider-value="0"/>
+
+				<span class="eq-label">
+					<table>
+						<tr>
+							<td valign="top">+10</td>
+						</tr>
+						<tr>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td valign="bottom">-10</td>
+						</tr>
+					</table>
+				</span>
 			</div>
 			
-			<div class="knob-container col-md-1 col-lg-2">
+			<div class="knob-container col-md-2 col-lg-2">
 				<input type="text" id="knob3" class="knob knob-bottom" value="0" data-skin="tron">
 				<input type="text" id="knob4" class="knob knob-bottom" value="0" data-skin="tron">
 			</div>

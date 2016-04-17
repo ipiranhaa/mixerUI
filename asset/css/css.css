@@ -1,5 +1,5 @@
 body {
-	background-color: black;
+	background-color: #1B3A44;
 }
 
 .title {
@@ -9,7 +9,8 @@ body {
 }
 
 .slider-vertical{
-	margin-right: 8px;
+	/*margin-right: 8px;*/
+	margin-top: -200px;
 }
 
 .container-line1 {
@@ -21,5 +22,25 @@ body {
 }
 
 .knob-container {
-	margin-top: 55px;
+	padding-top: 55px;
+}
+
+.container-line1, .container-line2, .knob-container {
+	border: 1px solid #fff;
+}
+
+.eq-label {
+	display: inline-block;
+	height: 210px;
+	font-size: 10px;
+	color: white;
+	margin-left: 4px;
+}
+
+.eq-label > table {
+	height: 100%;
+}
+
+.eq-container {
+	padding-top: 30px;
 }
