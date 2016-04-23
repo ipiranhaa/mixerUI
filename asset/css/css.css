@@ -2,6 +2,12 @@ body {
 	background-color: #1B3A44;
 }
 
+span.text {
+	position: absolute;
+	color: #fff;
+	text-align: center;
+}
+
 .title {
 	color: #fff;
 	text-align: center;
@@ -16,17 +22,29 @@ body {
 .container-line1 {
 	margin-top: 50px;
 }
+.knob-container {
+	/*padding-top: 55px;*/
+	height: 293px;
+	border-left: 1px solid #fff;
+}
+
+.eq-in-container {
+	padding-top: 40px;
+	padding-left: 20px;
+	height: 147px;
+}
+
+.hp-filter-container {
+	padding: 30px 20px;
+	height: 146px;
+}
+
+.container-line1, .container-line2 {
+	border: 1px solid #fff;
+}
 
 .container-line2 {
-	/*margin-top: 35px;*/
-}
-
-.knob-container {
-	padding-top: 55px;
-}
-
-.container-line1, .container-line2, .knob-container {
-	border: 1px solid #fff;
+	border-top: 0px;
 }
 
 .eq-label {
@@ -44,16 +62,117 @@ body {
 .eq-label-top {
 	font-size: 10px;
 	color: white;
-	margin-left: 21px;
+	margin-left: 20px;
 	margin-bottom: 4px;
 }
 
 .eq-label-top td {
-	width: 31px;
+	width: 32px;
 	text-align: center;
 }	
 
 .eq-container {
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding: 30px 80px;
+}
+
+/* button */
+.knob-container button {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background-color: #eee;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 3px 5px #000;
+}
+
+.knob-container button:hover {
+	background-color: #ddd;
+}
+
+.knob-container button:active{
+	background-color: #ccc;
+	box-shadow: 0 2px #000;
+	transform: translateY(5px);
+}
+
+.eq-in-btn {
+	margin-top: 10px
+}
+
+.hp-filter-btn {
+	left: 170px;
+	margin-top: 30px;
+}
+
+.container-line1 button.pressed, .container-line2 button.pressed {
+	box-shadow: inset 0 0 5px #000;
+}
+
+/* end button */
+
+hr {
+	display: inline;
+	position: absolute;
+	border: 0;
+	border-bottom: 1px dashed #ccc;
+}
+
+hr.large {
+	margin-top: 40px;
+	width: 40px;
+}
+
+hr.small {
+	margin-left: 20px;
+	width: 50px;
+}
+
+.manage-knob {
+	margin-left: 70px !important;
+}
+
+.small-container {
+	padding-left: 60px;
+}
+
+.container-line1 .large-container {
+	padding-top: 50px !important;
+}
+
+.container-line1 .small-container {
+	padding-top: 46px;
+}
+
+.container-line2 .small-container {
+	padding-top: 60px;
+}
+
+.container-line2 .large-container {
+	padding-top: 10px !important;
+}
+
+.container-line1 .large-container span.text {
+	top: 34px;
+	left: 154px;
+}
+
+.container-line1 .small-container span.text {
+	top: 176px;
+	left: 68px;
+}
+
+.container-line2 .small-container span.text {
+	top: 42px;
+	left: 68px;
+}
+
+.container-line2 .large-container span.text {
+	top: 142px;
+	left: 154px;
+}
+
+
+.reset {
+	margin-top: 20px;
 }

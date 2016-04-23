@@ -113,8 +113,20 @@
 			</div>
 			
 			<div class="knob-container col-md-2 col-lg-2">
-				<input type="text" id="knob1" class="knob eq-in knob-top" value="0">
-				<input type="text" id="knob2" class="knob hp-filter knob-top" value="0">
+				<div class="eq-in-container large-container">
+					<span class="text">Hi-Pass <br> Filter</span>
+					<input type="text" id="knob1" class="knob hp-filter" value="20">
+					<hr class="large">
+					<button class="hp-filter-btn" id="btn1"></button>
+				</div>
+				<div class="hp-filter-container small-container">
+					<span class="text">EQ IN</span>
+					<button class="eq-in-btn" id="btn2">1</button>
+					<hr class="small">
+					<span class="manage-knob">
+						<input type="text" id="knob2" class="knob eq-in" value="-50">
+					</span>
+				</div>
 			</div>
 		</div>
 		<div class="row container-line2" id="container-line2">
@@ -217,9 +229,25 @@
 			</div>
 			
 			<div class="knob-container col-md-2 col-lg-2">
-				<input type="text" id="knob3" class="knob eq-in knob-bottom" value="0">
-				<input type="text" id="knob4" class="knob hp-filter knob-bottom" value="0">
+				<div class="eq-in-container small-container">
+					<span class="text">EQ IN</span>
+					<button class="eq-in-btn" id="btn3">2</button>
+					<hr class="small">
+					<span class="manage-knob">
+						<input type="text" id="knob3" class="knob eq-in" value="-50">
+					</span>
+				</div>
+				<div class="hp-filter-container large-container">
+					<span class="text">Hi-Pass <br> Filter</span>
+					<input type="text" id="knob4" class="knob hp-filter" value="20">
+					<hr class="large">
+					<button class="hp-filter-btn" id="btn4"></button>
+				</div>
 			</div>
+		</div>
+
+		<div class="reset" align="center">
+			<button class="reset-btn btn btn-danger">Flaten all</button>
 		</div>
 	</div>
 </body>
