@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 	var scaleElement = "<div class='eq-label'><table><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr></table></div>";
-	// var numberElement = "<div class='eq-container col-md-10 col-lg-10'><span class='eq-label'><table><tr><td valign='top'>+10</td></tr><tr><td>0</td></tr><tr><td valign='bottom'>-10</td></tr></table></span>";
+	
 	// init slider
 	var options = {
 		value: 0,
@@ -46,6 +46,7 @@ $( document ).ready(function() {
 		}
 	});
 	
+	// hook eq value
 	$(".eq-bottom").on("slideStop", function(slideEvt) {
 		var eq = [];
 		var data = "";
@@ -73,6 +74,7 @@ $( document ).ready(function() {
 		}
 	});
 	
+	// init knob
 	$(".eq-in").knob({
 		'width': 100,
 		'thickness': 0.2,
@@ -99,7 +101,8 @@ $( document ).ready(function() {
 		'angleArc': 250,
 		'change' : function (v) { console.log(v); }
 	});
-
+	
+	// bing switch event
 	$('.hp-filter-btn').click(function(e)	{
 		console.log('hp switch clicked');
 		e.preventDefault();
@@ -118,6 +121,36 @@ $( document ).ready(function() {
 		} else {
 			$(this).addClass('pressed');
 		}
+	});
+	
+	$('.reset').click(function(e)	{
+		console.log('Reset state');
+		e.preventDefault();
+		
+		// reset sliders
+		for (i = 0; i < 60; i++) {
+			var ele = '#eq' + i.toString();
+			$(ele).slider('setValue', 0);
+		}
+		
+		// reset knobs
+		$('#knob1').val(20).trigger('change');;
+		$('#knob2').val(-50).trigger('change');;
+		$('#knob3').val(-50).trigger('change');;
+		$('#knob4').val(20).trigger('change');;
+		
+		//reset switches
+		$('.hp-filter-btn').each(function() {
+			if ($(this).hasClass('pressed')) {
+				$(this).removeClass('pressed')
+			}
+		});
+		
+		$('.eq-in-btn').each(function() {
+			if ($(this).hasClass('pressed')) {
+				$(this).removeClass('pressed')
+			}
+		});
 	});
 
 });
