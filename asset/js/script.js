@@ -1,5 +1,31 @@
 $( document ).ready(function() {
 	var scaleElement = "<div class='eq-label'><table><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr></table></div>";
+	var hpFilterOptions = {
+		'width': 100,
+		'thickness': 0.2,
+		'bgColor': "#eee",
+		'min': 20,
+		'max': 250,
+		'step': 1,
+		'skin': 'tron',
+		'angleOffset': -125,
+		'angleArc': 250,
+		'change' : function (v) { console.log(v); }
+	};
+	
+	var eqInOptions = {
+		'width': 100,
+		'thickness': 0.2,
+		'bgColor': "#eee",
+		'min': -50,
+		'max': 10,
+		'step': 1,
+		'skin': 'tron',
+		'angleOffset': -125,
+		'angleArc': 250,
+		'width': 60,
+		'change' : function (v) { console.log(v); }
+	};
 	
 	// init slider
 	var options = {
@@ -75,34 +101,10 @@ $( document ).ready(function() {
 	});
 	
 	// init knob
-	$(".eq-in").knob({
-		'width': 100,
-		'thickness': 0.2,
-		'bgColor': "#eee",
-		'min': -50,
-		'max': 10,
-		'step': 1,
-		'skin': 'tron',
-		'angleOffset': -125,
-		'angleArc': 250,
-		'width': 60,
-		'change' : function (v) { console.log(v); }
-	});
-
-	$(".hp-filter").knob({
-		'width': 100,
-		'thickness': 0.2,
-		'bgColor': "#eee",
-		'min': 20,
-		'max': 250,
-		'step': 1,
-		'skin': 'tron',
-		'angleOffset': -125,
-		'angleArc': 250,
-		'change' : function (v) { console.log(v); }
-	});
+	$(".eq-in").knob(eqInOptions);
+	$(".hp-filter").knob(hpFilterOptions);
 	
-	// bing switch event
+	// bind switch event
 	$('.hp-filter-btn').click(function(e)	{
 		console.log('hp switch clicked');
 		e.preventDefault();
@@ -111,6 +113,23 @@ $( document ).ready(function() {
 		} else {
 			$(this).addClass('pressed');
 		}
+		
+		$(this).blur();
+		
+		var id = $(this)[0].id;
+		var knobElement;
+		if (id.indexOf('1') > 0) {
+			knobElement = $('#knob1');
+		} else if (id.indexOf('4') > 0) {
+			knobElement = $('#knob4');
+		} 
+		
+		knobElement.siblings("canvas").remove();
+		if (knobElement.attr("data-readOnly")=='true') {
+			knobElement.unwrap().removeAttr("data-readOnly readonly").data("kontroled","").data("readonly",false).knob(hpFilterOptions);
+		} else {
+			knobElement.unwrap().attr("data-readOnly",true).data("kontroled","").data("readonly",true).knob(hpFilterOptions);
+		}	
 	});
 
 	$('.eq-in-btn').click(function(e)	{
@@ -121,6 +140,23 @@ $( document ).ready(function() {
 		} else {
 			$(this).addClass('pressed');
 		}
+		
+		$(this).blur();
+		
+		var id = $(this)[0].id;
+		var knobElement;
+		if (id.indexOf('2') > 0) {
+			knobElement = $('#knob2');
+		} else if (id.indexOf('3') > 0) {
+			knobElement = $('#knob3');
+		}
+		
+		knobElement.siblings("canvas").remove();
+		if (knobElement.attr("data-readOnly")=='true') {
+			knobElement.unwrap().removeAttr("data-readOnly readonly").data("kontroled","").data("readonly",false).knob(eqInOptions);
+		} else {
+			knobElement.unwrap().attr("data-readOnly",true).data("kontroled","").data("readonly",true).knob(eqInOptions);
+		}	
 	});
 	
 	$('.reset').click(function(e)	{
@@ -134,21 +170,34 @@ $( document ).ready(function() {
 		}
 		
 		// reset knobs
-		$('#knob1').val(20).trigger('change');;
-		$('#knob2').val(-50).trigger('change');;
-		$('#knob3').val(-50).trigger('change');;
-		$('#knob4').val(20).trigger('change');;
+		$('#knob1').val(20).trigger('change');
+		$('#knob2').val(-50).trigger('change');
+		$('#knob3').val(-50).trigger('change');
+		$('#knob4').val(20).trigger('change');
+		
+		for (i = 1; i <= 4; i++) {
+			if (i == 1 || i == 4) {
+				filter = hpFilterOptions;
+			} else {
+				filter = eqInOptions;
+			}
+			
+			if ($('#knob' + i).attr("data-readOnly")!='true') {
+				$('#knob' + i).siblings("canvas").remove();
+				$('#knob' + i).unwrap().attr("data-readOnly",true).data("kontroled","").data("readonly",true).knob(filter);
+			}
+		}
 		
 		//reset switches
 		$('.hp-filter-btn').each(function() {
 			if ($(this).hasClass('pressed')) {
-				$(this).removeClass('pressed')
+				$(this).removeClass('pressed');
 			}
 		});
 		
 		$('.eq-in-btn').each(function() {
 			if ($(this).hasClass('pressed')) {
-				$(this).removeClass('pressed')
+				$(this).removeClass('pressed');
 			}
 		});
 	});
