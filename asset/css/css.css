@@ -26,6 +26,7 @@ span.text {
 	/*padding-top: 55px;*/
 	height: 293px;
 	border-left: 1px solid #fff;
+	padding: 0px;
 }
 
 .eq-in-container {
@@ -37,6 +38,14 @@ span.text {
 .hp-filter-container {
 	padding: 30px 20px;
 	height: 146px;
+}
+
+.eq-in-container:first-child {
+	border-bottom: 1px solid #fff;
+}
+
+.eq-in-container:not(:first-child) {
+	border-top: 1px solid #fff;
 }
 
 .container-line1, .container-line2 {
@@ -138,38 +147,40 @@ hr.small {
 }
 
 .container-line1 .large-container {
-	padding-top: 50px !important;
+	padding-top: 35px !important;
+	padding-left: 30px;
 }
 
 .container-line1 .small-container {
-	padding-top: 46px;
+	padding-top: 50px;
 }
 
 .container-line2 .small-container {
-	padding-top: 60px;
+	padding-top: 50px;
 }
 
 .container-line2 .large-container {
-	padding-top: 10px !important;
+	padding-top: 35px !important;
+	padding-left: 30px;
 }
 
 .container-line1 .large-container span.text {
-	top: 34px;
+	top: 22px;
 	left: 154px;
 }
 
 .container-line1 .small-container span.text {
-	top: 176px;
-	left: 68px;
+	top: 182px;
+	left: 52px;
 }
 
 .container-line2 .small-container span.text {
-	top: 42px;
-	left: 68px;
+	top: 36px;
+	left: 52px;
 }
 
 .container-line2 .large-container span.text {
-	top: 142px;
+	top: 168px;
 	left: 154px;
 }
 
