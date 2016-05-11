@@ -71,17 +71,17 @@ span.text {
 .eq-label-top {
 	font-size: 10px;
 	color: white;
-	margin-left: 20px;
+	margin-left: 21px;
 	margin-bottom: 4px;
 }
 
 .eq-label-top td {
-	width: 32px;
+	width: 31px;
 	text-align: center;
 }	
 
 .eq-container {
-	padding: 30px 80px;
+	padding: 30px 34px;
 }
 
 /* button */
