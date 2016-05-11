@@ -71,12 +71,12 @@ span.text {
 .eq-label-top {
 	font-size: 10px;
 	color: white;
-	margin-left: 21px;
+	margin-left: 19px;
 	margin-bottom: 4px;
 }
 
 .eq-label-top td {
-	width: 31px;
+	width: 32px;
 	text-align: center;
 }	
 
@@ -93,6 +93,7 @@ span.text {
 	border: none;
 	border-radius: 2px;
 	box-shadow: 3px 5px #000;
+	padding-top: 0px;
 }
 
 .knob-container button:hover {
