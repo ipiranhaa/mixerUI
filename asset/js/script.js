@@ -1,3 +1,5 @@
+// slider: https://github.com/seiyria/bootstrap-slider
+// knob: https://github.com/aterrien/jQuery-Knob
 $( document ).ready(function() {
 	var scaleElement = "<div class='eq-label'><table><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr></table></div>";
 	var hpFilterOptions = {
@@ -10,7 +12,18 @@ $( document ).ready(function() {
 		'skin': 'tron',
 		'angleOffset': -125,
 		'angleArc': 250,
-		'change' : function (v) { console.log(v); }
+		'change' : function (v) {
+			var nocache = "&nocache=" + Math.random() * 1000000;
+    	var request = new XMLHttpRequest();
+
+			var eleId = this.$[0].id;
+			var data = eleId + '=' + Math.round(v);
+			
+			console.log(data);
+
+			request.open("GET", "ajax_inputs" + data, true);
+    	request.send(null);
+		}
 	};
 	
 	var eqInOptions = {
@@ -24,7 +37,18 @@ $( document ).ready(function() {
 		'angleOffset': -125,
 		'angleArc': 250,
 		'width': 60,
-		'change' : function (v) { console.log(v); }
+		'change' : function (v) {
+			var nocache = "&nocache=" + Math.random() * 1000000;
+    	var request = new XMLHttpRequest();
+
+			var eleId = this.$[0].id;
+			var data = eleId + '=' + Math.round(v);
+			
+			console.log(data);
+
+			request.open("GET", "ajax_inputs" + data, true);
+    	request.send(null); 
+		}
 	};
 	
 	// init slider
@@ -45,58 +69,38 @@ $( document ).ready(function() {
 
 	// blind slider event
 	var filterTopData, filterBottomData;
-	$(".eq-top").on("slideStop", function(slideEvt) {
-		var eq = [];
-		var data = "";
-		for (var i = 0; i < 30; i++) {
-			eq[i] = $("#eq" + i).val();
-			if (!eq[i]) {
-				eq[i] = 0;
-			}
+	$(".eq-top").on("change", function(slideEvt) {
+		var nocache = "&nocache=" + Math.random() * 1000000;
+    var request = new XMLHttpRequest();
 
-			if (i == 29) {
-				data += eq[i];
-			}
-			else {
-				data += eq[i] + " : ";
-			} 
-			
-		};
-		
+		var eleNumberId = (slideEvt.currentTarget.id).split('eq')[1];
+		var value = slideEvt.value.newValue;
+		var newEleId = 'eq' + (parseInt(eleNumberId) + 1);
+		var data = newEleId + '=' + value;
+
 		if (filterTopData != data) {
-			console.log('Top -> ' + data);
+			console.log(data);
 			filterTopData = data;
-			// socket.emit('eqData', 'Top -> ' + data);
-		} else {
-			console.log("denied");		
+			request.open("GET", "ajax_inputs" + data, true);
+    	request.send(null);
 		}
 	});
 	
 	// hook eq value
-	$(".eq-bottom").on("slideStop", function(slideEvt) {
-		var eq = [];
-		var data = "";
-		for (var i = 30; i < 60; i++) {
-			eq[i] = $("#eq" + i).val();
-			if (!eq[i]) {
-				eq[i] = 0;
-			}
+	$(".eq-bottom").on("change", function(slideEvt) {
+		var nocache = "&nocache=" + Math.random() * 1000000;
+    var request = new XMLHttpRequest();
 
-			if (i == 59) {
-				data += eq[i];
-			}
-			else {
-				data += eq[i] + " : ";
-			} 
-			
-		};
-		
+		var eleNumberId = (slideEvt.currentTarget.id).split('eq')[1];
+		var value = slideEvt.value.newValue;
+		var newEleId = 'eq' + (parseInt(eleNumberId) + 1);
+		var data = newEleId + '=' + value;
+
 		if (filterBottomData != data) {
-			console.log('Bottom -> ' + data);
+			console.log(data);
 			filterBottomData = data;
-			// socket.emit('eqData', 'Bottom -> ' + data);
-		} else {
-			console.log("denied");		
+			request.open("GET", "ajax_inputs" + data, true);
+    	request.send(null);
 		}
 	});
 	
