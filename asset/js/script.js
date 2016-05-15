@@ -185,6 +185,12 @@ $( document ).ready(function() {
 			knobElement = $('#knob4');
 		} 
 		
+		if (!isDesktopView) {
+			hpFilterOptions.width = 80;
+		} else {
+			hpFilterOptions.width = 100;
+		}
+		
 		knobElement.siblings("canvas").remove();
 		if (knobElement.attr("data-readOnly")=='true') {
 			knobElement.unwrap().removeAttr("data-readOnly readonly").data("kontroled","").data("readonly",false).knob(hpFilterOptions);
