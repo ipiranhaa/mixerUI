@@ -1,6 +1,7 @@
 // slider: https://github.com/seiyria/bootstrap-slider
 // knob: https://github.com/aterrien/jQuery-Knob
 $( document ).ready(function() {
+	$(document).bind('touchmove', false);
 	var scaleElement = "<div class='eq-label'><table><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr></table></div>";
 	var isDesktopView = true;
 	var KnobRendered = false;
@@ -137,7 +138,7 @@ $( document ).ready(function() {
 		var data = newEleId + '=' + value;
 
 		if (filterTopData != data) {
-			console.log(data);
+			console.log('send: ' + data);
 			filterTopData = data;
 			request.open("GET", "ajax_inputs" + data, true);
     	request.send(null);
@@ -146,7 +147,6 @@ $( document ).ready(function() {
 	
 	// hook eq value
 	$(".eq-bottom").on("change", function(slideEvt) {
-		var nocache = "&nocache=" + Math.random() * 1000000;
     var request = new XMLHttpRequest();
 
 		var eleNumberId = (slideEvt.currentTarget.id).split('eq')[1];
@@ -155,7 +155,7 @@ $( document ).ready(function() {
 		var data = newEleId + '=' + value;
 
 		if (filterBottomData != data) {
-			console.log(data);
+			console.log('send: ' + data);
 			filterBottomData = data;
 			request.open("GET", "ajax_inputs" + data, true);
     	request.send(null);
@@ -169,22 +169,35 @@ $( document ).ready(function() {
 	$('.hp-filter-btn').click(function(e)	{
 		console.log('hp switch clicked');
 		e.preventDefault();
-		if ($(this).hasClass('pressed')) {
-			$(this).removeClass('pressed');
-		} else {
-			$(this).addClass('pressed');
-		}
-		
-		$(this).blur();
-		
+
+		var request = new XMLHttpRequest();
+		var text;
+		var data;
+
 		var id = $(this)[0].id;
 		var knobElement;
 		if (id.indexOf('1') > 0) {
 			knobElement = $('#knob1');
+			text = 'button1';
 		} else if (id.indexOf('4') > 0) {
 			knobElement = $('#knob4');
+			text = 'button4';
 		} 
+
+		if ($(this).hasClass('pressed')) {
+			$(this).removeClass('pressed');
+			data = text + '=2';
+		} else {
+			$(this).addClass('pressed');
+			data = text + '=1';
+		}
+
+		console.log('send: ' + data);
+		request.open("GET", "ajax_inputs" + data, true);
+    request.send(null);
 		
+		$(this).blur();		
+				
 		if (!isDesktopView) {
 			hpFilterOptions.width = 80;
 		} else {
@@ -202,33 +215,58 @@ $( document ).ready(function() {
 	$('.eq-in-btn').click(function(e)	{
 		console.log('eq switch clicked');
 		e.preventDefault();
-		if ($(this).hasClass('pressed')) {
-			$(this).removeClass('pressed');
-		} else {
-			$(this).addClass('pressed');
-		}
-		
-		$(this).blur();
-		
+
+		var request = new XMLHttpRequest();
+		var text;
+		var data;
+
 		var id = $(this)[0].id;
 		var knobElement;
 		if (id.indexOf('2') > 0) {
-			knobElement = $('#knob2');
+			text = 'button2';
 		} else if (id.indexOf('3') > 0) {
-			knobElement = $('#knob3');
+			text = 'button3';
 		}
-		
-		knobElement.siblings("canvas").remove();
-		if (knobElement.attr("data-readOnly")=='true') {
-			knobElement.unwrap().removeAttr("data-readOnly readonly").data("kontroled","").data("readonly",false).knob(eqInOptions);
+
+		if ($(this).hasClass('pressed')) {
+			$(this).removeClass('pressed');
+			data = text + '=2';
 		} else {
-			knobElement.unwrap().attr("data-readOnly",true).data("kontroled","").data("readonly",true).knob(eqInOptions);
-		}	
+			$(this).addClass('pressed');
+			data = text + '=1';
+		}
+
+		console.log('send: ' + data);
+		request.open("GET", "ajax_inputs" + data, true);
+    request.send(null);
+		
+		$(this).blur();
+		
+		// var id = $(this)[0].id;
+		// var knobElement;
+		// if (id.indexOf('2') > 0) {
+		// 	knobElement = $('#knob2');
+		// } else if (id.indexOf('3') > 0) {
+		// 	knobElement = $('#knob3');
+		// }
+		
+		// knobElement.siblings("canvas").remove();
+		// if (knobElement.attr("data-readOnly")=='true') {
+		// 	knobElement.unwrap().removeAttr("data-readOnly readonly").data("kontroled","").data("readonly",false).knob(eqInOptions);
+		// } else {
+		// 	knobElement.unwrap().attr("data-readOnly",true).data("kontroled","").data("readonly",true).knob(eqInOptions);
+		// }	
 	});
 	
 	$('.reset').click(function(e)	{
 		console.log('Reset state');
 		e.preventDefault();
+
+		var request = new XMLHttpRequest();
+		var data = 'reset=0';
+		console.log('send: ' + data);
+		request.open("GET", "ajax_inputs" + data, true);
+    request.send(null);
 		
 		// reset sliders
 		for (i = 0; i < 60; i++) {
