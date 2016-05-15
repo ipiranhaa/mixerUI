@@ -2,6 +2,9 @@
 // knob: https://github.com/aterrien/jQuery-Knob
 $( document ).ready(function() {
 	var scaleElement = "<div class='eq-label'><table><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr><tr><td>-</td></tr></table></div>";
+	var isDesktopView = true;
+	var KnobRendered = false;
+
 	var hpFilterOptions = {
 		'width': 100,
 		'thickness': 0.2,
@@ -27,7 +30,7 @@ $( document ).ready(function() {
 	};
 	
 	var eqInOptions = {
-		'width': 100,
+		'width': 60,
 		'thickness': 0.2,
 		'bgColor': "#eee",
 		'min': -50,
@@ -36,7 +39,6 @@ $( document ).ready(function() {
 		'skin': 'tron',
 		'angleOffset': -125,
 		'angleArc': 250,
-		'width': 60,
 		'change' : function (v) {
 			var nocache = "&nocache=" + Math.random() * 1000000;
     	var request = new XMLHttpRequest();
@@ -50,6 +52,62 @@ $( document ).ready(function() {
     	request.send(null); 
 		}
 	};
+
+	var checkScreen = function() {
+		var height = $(window).height();
+		var width = $(window).width();
+		if (height == 768 && width == 1024) {
+			isDesktopView = false
+		} else {
+			isDesktopView = true;
+		}
+	}
+
+	var renderKnob = function() {
+		console.log('render knob');
+		checkScreen();
+		if (!isDesktopView) {
+			if (!KnobRendered) {
+				eqInOptions.width = 60;
+				hpFilterOptions.width = 80;
+				KnobRendered = true;
+				$(".eq-in").knob(eqInOptions);
+				$(".hp-filter").knob(hpFilterOptions);
+			} else {
+				$(".eq-in").trigger(
+					'configure',
+					{
+						"width": 60
+					});
+
+				$(".hp-filter").trigger(
+					'configure',
+					{
+						"width": 80
+					});
+			}	
+		} else {
+			if (!KnobRendered) {
+				eqInOptions.width = 60
+				hpFilterOptions.width = 100;
+				KnobRendered = true;
+				$(".eq-in").knob(eqInOptions);
+				$(".hp-filter").knob(hpFilterOptions);
+			} else {
+				$(".eq-in").trigger(
+					'configure',
+					{
+						"width": 60
+					});
+
+				$(".hp-filter").trigger(
+					'configure',
+					{
+						"width": 100
+					});
+			}	
+		}	
+	}
 	
 	// init slider
 	var options = {
@@ -105,8 +163,7 @@ $( document ).ready(function() {
 	});
 	
 	// init knob
-	$(".eq-in").knob(eqInOptions);
-	$(".hp-filter").knob(hpFilterOptions);
+	renderKnob();
 	
 	// bind switch event
 	$('.hp-filter-btn').click(function(e)	{
@@ -204,6 +261,10 @@ $( document ).ready(function() {
 				$(this).removeClass('pressed');
 			}
 		});
+	});
+
+	$(window).resize(function() {
+		renderKnob();
 	});
 
 });
